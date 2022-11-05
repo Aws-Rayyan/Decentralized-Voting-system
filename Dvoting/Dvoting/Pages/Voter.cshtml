@@ -1,0 +1,61 @@
+﻿@page
+@model Dvoting.Pages.VoterModel
+@{
+}
+
+<script type="module" src="~/js/Voter.js"></script>
+
+
+<div id="errorNotAllowedToVote" class="alert alert-danger" role="alert" style="display:none">
+    You Are Not Allowed To Vote, Please Get A Permission From The Admin
+</div>
+
+<div id="errorAlreadyVoted" class="alert alert-danger" role="alert" style="display:none">
+    You Have Already Casted Your Vote
+</div>
+
+<div id="VotedSuccessfully" class="alert alert-success" role="alert" style="display:none">
+    Your Vote Has Been Casted
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">Voter</h1>
+    <hr />
+    <button onclick="connect()" id="ConnectButton">Connect Wallet</button>
+    <hr />
+
+       
+       <button id="getCandidatesButton">getCandidates</button>      
+       <select id="CandidatesList">
+           <option value="-1" disabled selected>Choose The Candidates</option>
+       </select>
+
+       <button id="VoteButton">Vote</button>
+
+
+
+
+    <hr />
+    <button id="TestButton">Test</button>
+
+    <hr />
+
+
+</div>
+<script>
+
+async function connect() {
+        //console.log(ethers);
+  if (typeof window.ethereum !== "undefined") {
+    console.log("MetaMask deteced");
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    document.getElementById("ConnectButton").innerHTML = "Connected !!";
+
+    //fill the candidates list once connected
+    document.getElementById("getCandidatesButton").click()
+
+  } else {
+    document.getElementById("ConnectButton").innerHTML = "Please Install MetaMask";
+  }
+}
+</script>

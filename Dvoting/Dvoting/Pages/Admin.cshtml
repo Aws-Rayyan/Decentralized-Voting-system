@@ -1,0 +1,60 @@
+﻿@page
+@model Dvoting.Pages.AdminModel
+@{
+}
+<script type="module" src="~/js/site.js"></script>
+
+
+<div id="errorUserAlreadyAdded" class="alert alert-danger" role="alert" style="display:none">
+    This User Is Already Added
+</div>
+
+<div id="onlyAdmin" class="alert alert-danger" role="alert" style="display:none">
+    This Operation Is Ownly Allowed By The Admin
+</div>
+
+<div id="PermissionSuccessful" class="alert alert-success" role="alert" style="display:none">
+    Permission Is Given To The User Successfully
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">Admin</h1>
+
+
+       <label>Address To Permit</label>
+       <input id="addressToPermitInput" />
+    <button id="PermissionButton">Permit</button>
+
+   <hr />
+   <button onclick="connect()" id="ConnectButton">Connect Wallet</button>
+   <hr />
+   <button id="TestButton">Test</button>
+   
+   <hr />
+    
+
+
+
+
+
+
+</div>
+
+<script type="module" src="~/js/Admin.js"></script>
+
+<script>
+
+async function connect() {
+        //console.log(ethers);
+  if (typeof window.ethereum !== "undefined") {
+    console.log("MetaMask deteced");
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    document.getElementById("ConnectButton").innerHTML = "Connected !!";
+
+    
+  } else {
+    document.getElementById("ConnectButton").innerHTML = "Please Install MetaMask";
+  }
+}
+</script>
+
