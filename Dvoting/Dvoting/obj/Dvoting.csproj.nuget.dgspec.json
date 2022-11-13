@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LENOVO\\Desktop\\blockchain\\gradproj\\Dvoting\\Dvoting\\Dvoting.csproj": {}
+    "C:\\Users\\LENOVO\\Desktop\\GraduationProject\\Dvoting\\Dvoting\\Dvoting.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LENOVO\\Desktop\\blockchain\\gradproj\\Dvoting\\Dvoting\\Dvoting.csproj": {
+    "C:\\Users\\LENOVO\\Desktop\\GraduationProject\\Dvoting\\Dvoting\\Dvoting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\blockchain\\gradproj\\Dvoting\\Dvoting\\Dvoting.csproj",
+        "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\GraduationProject\\Dvoting\\Dvoting\\Dvoting.csproj",
         "projectName": "Dvoting",
-        "projectPath": "C:\\Users\\LENOVO\\Desktop\\blockchain\\gradproj\\Dvoting\\Dvoting\\Dvoting.csproj",
+        "projectPath": "C:\\Users\\LENOVO\\Desktop\\GraduationProject\\Dvoting\\Dvoting\\Dvoting.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LENOVO\\Desktop\\blockchain\\gradproj\\Dvoting\\Dvoting\\obj\\",
+        "outputPath": "C:\\Users\\LENOVO\\Desktop\\GraduationProject\\Dvoting\\Dvoting\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,7 +42,11 @@
           "dependencies": {
             "Nethereum.Web3": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[4.11.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [

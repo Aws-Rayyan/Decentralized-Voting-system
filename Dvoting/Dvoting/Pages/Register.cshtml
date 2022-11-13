@@ -1,0 +1,112 @@
+﻿@page
+@model Dvoting.Pages.RegsiterModel
+@{
+}
+
+<script type="module" src="~/js/Voter.js"></script>
+
+
+<div asp-validation-summary="All">
+    <span>Please correct the following errors</span>
+</div>
+<div class="text-center">
+    <h1 class="display-4">Register</h1>
+    <hr />
+    <button onclick="connect()" id="ConnectButton" hidden>Connect Wallet</button>
+    <hr />
+
+    <form method="post" asp-page-handler="RegisterUser">
+       
+        <div class="col">
+            <div class="form-group mb-3">
+                <label asp-for="@Model.NewUser.NationalID"></label>
+                <input asp-for="@Model.NewUser.NationalID" />
+                <span asp-validation-for="@Model.NewUser.NationalID"></span>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group mb-3">
+                <label asp-for="@Model.NewUser.Fname"></label>
+                <input asp-for="@Model.NewUser.Fname" />
+                <span asp-validation-for="@Model.NewUser.Fname"></span>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group mb-3">
+                <label asp-for="@Model.NewUser.Lname"></label>
+                <input asp-for="@Model.NewUser.Lname" />
+                <span asp-validation-for="@Model.NewUser.Lname"></span>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group mb-3">
+                <label asp-for="@Model.NewUser.DOB"></label>
+                <input asp-for="@Model.NewUser.DOB" type="date" />
+                <span asp-validation-for="@Model.NewUser.DOB"></span>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group mb-3">
+                <label asp-for="@Model.NewUser.Password"></label>
+                <input asp-for="@Model.NewUser.Password" />
+                <span asp-validation-for="@Model.NewUser.Password"></span>
+            </div>
+        </div>
+
+          <div class="col">
+            <div class="form-group mb-3">
+                <label asp-for="@Model.NewUser.ConfirmPassword"></label>
+                <input asp-for="@Model.NewUser.ConfirmPassword" />
+                <span asp-validation-for="@Model.NewUser.ConfirmPassword"></span>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group mb-3">              
+                <input asp-for="@Model.NewUser.PublicKey" id="publicKeyInput" />             
+            </div>
+        </div>
+
+        <button type="submit"></button>
+
+    </form>
+
+
+
+</div>
+<script>
+
+
+async function connect() {
+       
+  if (typeof window.ethereum !== "undefined") {
+    console.log("MetaMask deteced");
+    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+    $('#publicKeyInput').val(accounts[0]);
+    document.getElementById("ConnectButton").innerHTML = "Connected !!";
+
+    //fill the candidates list once connected
+    document.getElementById("getCandidatesButton").click()
+
+  } else {
+    document.getElementById("ConnectButton").innerHTML = "Please Install MetaMask";
+  }
+}
+
+connect();
+
+</script>
+
+  <script>
+
+    var accountInterval = setInterval(async function () {
+       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+       $('#publicKeyInput').val(accounts[0]);
+    }, 3000);
+
+
+  </script>
