@@ -1,7 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿// Write your JavaScript code.
 import { ethers } from "./ethers-5.1.esm.min.js";
 import {abi , contractAddress } from "./constants.js"
 import * as jQuery from "../lib/jquery/dist/jquery.js";
@@ -14,7 +11,8 @@ async function getCandidates() {
     if (typeof window.ethereum !== "undefined") {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(contractAddress, abi, signer);       
+        const contract = new ethers.Contract(contractAddress, abi, signer); 
+        alert('awsa')
         try {
             const transactionResponse = await contract.getCandidates();
             console.log(transactionResponse); //returns array of array 
@@ -30,8 +28,9 @@ async function getCandidates() {
 
 
            
-        } catch (error) {          
-            console.log(error.data.message)
+        } catch (error) { 
+            console.log('aws')
+            console.log(error.data)
   
         }
        

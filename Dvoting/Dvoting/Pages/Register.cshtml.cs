@@ -1,10 +1,17 @@
 using Dvoting.Models;
+using Dvoting.Pages.Shared;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Nethereum.Contracts;
+using Nethereum.Hex.HexTypes;
+using Nethereum.Web3;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Numerics;
+using System.Reflection.Metadata;
 using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace Dvoting.Pages
@@ -100,6 +107,31 @@ namespace Dvoting.Pages
             return Page();
         }
 
+
+         
+        public async Task OnGetGivePermissionBlockChain()
+        {
+            var adminPK = _configuration.GetValue<string>("AdminPK");
+            Web3 web3 = new Web3(ContractData.URL);
+            Console.WriteLine(ContractData.URL);
+            // Console.WriteLine(ContractData.ABI );
+            Console.WriteLine(adminPK);
+            Contract dVotingContract = web3.Eth.GetContract(ContractData.ABI.Replace("\n", "").Replace("\r", "").Replace(" ", ""), ContractData.ContractAddress);
+
+            try
+            {
+                HexBigInteger gas = new HexBigInteger(new BigInteger(400000));
+                HexBigInteger value = new HexBigInteger(new BigInteger(0));
+
+                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync("b6558007a470f0593a35be45926342e92942fa3d7d00fc357c104fcc428f0cee", gas, value, "0x237Df5292b480E75180E9e9341A21054b70697Db"); 
+                permitToVote.Wait();
+                Console.WriteLine("permitted ");
+            }catch(Exception e){
+                Console.WriteLine("Error: {0}", e.Message);
+            }
+
+
+        }
 
 
 
