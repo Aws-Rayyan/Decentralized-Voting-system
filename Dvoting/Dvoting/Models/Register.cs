@@ -33,7 +33,7 @@ namespace Dvoting.Models
         public string? ConfirmPassword { get; set; }
 
         [Required]
-        public string? PublicKey { get; set; }
+        public string? PublicAddress { get; set; }
 
 
     }

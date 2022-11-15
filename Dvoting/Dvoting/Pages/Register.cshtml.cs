@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
 using Nethereum.Web3;
+using Nethereum.Web3.Accounts;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Data;
@@ -56,7 +57,7 @@ namespace Dvoting.Pages
                         cmd.Parameters.Add(new SqlParameter("@NationalID", NewUser.NationalID));
                         cmd.Parameters.Add(new SqlParameter("@DOB", NewUser.DOB.Date));
                         cmd.Parameters.Add(new SqlParameter("@User_password", NewUser.Password));
-                        cmd.Parameters.Add(new SqlParameter("@PublicKey", NewUser.PublicKey));
+                        cmd.Parameters.Add(new SqlParameter("@PublicKey", NewUser.PublicAddress));
 
                         cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int, 20, ParameterDirection.Output, false, 0, 10, "Status", DataRowVersion.Default, null));
 
@@ -83,11 +84,7 @@ namespace Dvoting.Pages
                         HttpContext.Session.SetString("NationalID", NewUser.NationalID);
 
 
-                        var adminPK = _configuration.GetValue<string>("AdminPK");
-                       // Console.WriteLine(adminPK);
-
-
-
+                        OnGetGivePermissionBlockChain();
 
 
                         return RedirectToPage("Voter");
@@ -112,10 +109,15 @@ namespace Dvoting.Pages
         public async Task OnGetGivePermissionBlockChain()
         {
             var adminPK = _configuration.GetValue<string>("AdminPK");
+
+            var account = new Account(adminPK);
+
+            //Console.WriteLine("private key is " + account.PrivateKey);
+            //Console.WriteLine("public key is " + account.PublicKey);            
+            //Console.WriteLine("address  is " + account.Address);
+
             Web3 web3 = new Web3(ContractData.URL);
-            Console.WriteLine(ContractData.URL);
             // Console.WriteLine(ContractData.ABI );
-            Console.WriteLine(adminPK);
             Contract dVotingContract = web3.Eth.GetContract(ContractData.ABI.Replace("\n", "").Replace("\r", "").Replace(" ", ""), ContractData.ContractAddress);
 
             try
@@ -123,7 +125,7 @@ namespace Dvoting.Pages
                 HexBigInteger gas = new HexBigInteger(new BigInteger(400000));
                 HexBigInteger value = new HexBigInteger(new BigInteger(0));
 
-                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync("b6558007a470f0593a35be45926342e92942fa3d7d00fc357c104fcc428f0cee", gas, value, "0x237Df5292b480E75180E9e9341A21054b70697Db"); 
+                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync(account.Address, gas, value, NewUser.PublicAddress); 
                 permitToVote.Wait();
                 Console.WriteLine("permitted ");
             }catch(Exception e){
