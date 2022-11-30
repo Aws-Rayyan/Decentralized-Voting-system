@@ -26,4 +26,10 @@
     <Folder Include="Pages\js\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\nicepage.css" />
+    <None Include="wwwroot\css\Register.css" />
+    <None Include="wwwroot\js\nicepage.js" />
+  </ItemGroup>
+
 </Project>

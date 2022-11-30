@@ -15146,12 +15146,12 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0x01eB9674e8100c029B9a06F87D8a8C32066a5246",
-      "transactionHash": "0xe5bafd2a76ad1cae6ff983af69b1d682d2cc98e353fb9eca1ab7b2512887a9cd"
+      "address": "0x4f7159A04b7E92A46fEe541d61fc7579921AFab2",
+      "transactionHash": "0xb117c99ec9692b6bfa20ae29d929ef1581728d0c5e57328b3304886322f0f542"
     }
   },
   "schemaVersion": "3.4.6",
-  "updatedAt": "2022-11-14T18:45:51.467Z",
+  "updatedAt": "2022-11-25T22:53:32.436Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

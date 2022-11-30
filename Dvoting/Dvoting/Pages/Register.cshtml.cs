@@ -110,22 +110,24 @@ namespace Dvoting.Pages
         {
             var adminPK = _configuration.GetValue<string>("AdminPK");
 
-            var account = new Account(adminPK);
+            var adminAccount = new Account(adminPK);
 
             //Console.WriteLine("private key is " + account.PrivateKey);
             //Console.WriteLine("public key is " + account.PublicKey);            
             //Console.WriteLine("address  is " + account.Address);
 
-            Web3 web3 = new Web3(ContractData.URL);
+            Web3 web3 = new Web3(url:ContractData.URL,account:adminAccount) ;
             // Console.WriteLine(ContractData.ABI );
-            Contract dVotingContract = web3.Eth.GetContract(ContractData.ABI.Replace("\n", "").Replace("\r", "").Replace(" ", ""), ContractData.ContractAddress);
-
+           
+            Contract dVotingContract = web3.Eth.GetContract(ContractData.ABI.Replace("\n", "").Replace("\r", "").Replace(" ", ""), ContractData.ContractAddress);       
+            
+            web3.TransactionManager.UseLegacyAsDefault = true;
             try
             {
                 HexBigInteger gas = new HexBigInteger(new BigInteger(400000));
-                HexBigInteger value = new HexBigInteger(new BigInteger(0));
+                HexBigInteger value = new HexBigInteger(new BigInteger(0));      
 
-                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync(account.Address, gas, value, NewUser.PublicAddress); 
+                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync(adminAccount.Address, gas, value, NewUser.PublicAddress); 
                 permitToVote.Wait();
                 Console.WriteLine("permitted ");
             }catch(Exception e){

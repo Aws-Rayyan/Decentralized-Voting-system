@@ -3,85 +3,82 @@
 @{
 }
 
-<script type="module" src="~/js/Voter.js"></script>
+@*<script type="module" src="~/js/Voter.js"></script>
+*@
 
-
-<div asp-validation-summary="All">
-    <span>Please correct the following errors</span>
-</div>
-<div class="text-center">
-    <h1 class="display-4">Register</h1>
-    <hr />
-    <button onclick="connect()" id="ConnectButton" hidden>Connect Wallet</button>
-    <hr />
-
-    <form method="post" asp-page-handler="RegisterUser">
-       
-        <div class="col">
-            <div class="form-group mb-3">
-                <label asp-for="@Model.NewUser.NationalID"></label>
-                <input asp-for="@Model.NewUser.NationalID" />
-                <span asp-validation-for="@Model.NewUser.NationalID"></span>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="INTUITIVE">
+    <meta name="description" content="">
+    <title>Register</title>
+    <link rel="stylesheet" href="~/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="~/css/Register.css" media="screen">
+    <script class="u-script" type="text/javascript" src="~/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="~/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Register">
+    <meta property="og:type" content="website">
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-clearfix u-palette-1-dark-3 u-section-1" id="sec-eeac">
+        <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
+            <div class="u-align-center u-form u-form-1">
+                <form method="post" asp-page-handler="RegisterUser" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" style="padding: 10px;">
+                    <div class="u-form-group u-form-name">
+                        <label asp-for="@Model.NewUser.NationalID" class="u-label u-label-1">National ID</label>
+                        <input asp-for="@Model.NewUser.NationalID"  placeholder="Enter your National ID" id="name-14ad" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  maxlength="10">
+                        <span asp-validation-for="@Model.NewUser.NationalID"></span>
+                    </div>
+                    <div class="u-form-group u-form-name u-form-group-2">
+                        <label asp-for="@Model.NewUser.Fname" class="u-label u-label-2">First Name</label>
+                        <input asp-for="@Model.NewUser.Fname"  placeholder="Enter your First Name" id="name-370e"  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-name u-form-group-3">
+                        <label asp-for="@Model.NewUser.Lname"  class="u-label u-label-3">Last Name</label>
+                        <input asp-for="@Model.NewUser.Lname" placeholder="Enter your Last Name " id="name-1df9" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-group-4">
+                        <label asp-for="@Model.NewUser.DOB" class="u-label u-label-4">Date of Birth</label>
+                        <input asp-for="@Model.NewUser.DOB" type="date" placeholder="MM/DD/YYYY" id="date-08f9" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-group-5">
+                        <label asp-for="@Model.NewUser.Password" class="u-label u-label-5">Password</label>
+                        <input asp-for="@Model.NewUser.Password" id="text-1a1c" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" placeholder="Enter your password" required="required">
+                    </div>
+                    <div class="u-form-group u-form-group-6">
+                        <label asp-for="@Model.NewUser.ConfirmPassword" class="u-label u-label-6">Confirm Password</label>
+                        <input asp-for="@Model.NewUser.ConfirmPassword"  placeholder="Re-enter your password" id="text-8302"  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                    </div>
+                    <div class="u-form-group u-form-name u-form-group-3">
+                        <label  class="u-label u-label-3">Remove the whole div</label>
+                        <input asp-for="@Model.NewUser.PublicAddress" id="publicKeyInput" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div> 
+                    <div class="u-align-center u-form-group u-form-submit">
+                        <a href="#" class="u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Register</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                  
+                </form>
             </div>
         </div>
+    </section>
 
-        <div class="col">
-            <div class="form-group mb-3">
-                <label asp-for="@Model.NewUser.Fname"></label>
-                <input asp-for="@Model.NewUser.Fname" />
-                <span asp-validation-for="@Model.NewUser.Fname"></span>
-            </div>
-        </div>
 
-        <div class="col">
-            <div class="form-group mb-3">
-                <label asp-for="@Model.NewUser.Lname"></label>
-                <input asp-for="@Model.NewUser.Lname" />
-                <span asp-validation-for="@Model.NewUser.Lname"></span>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="form-group mb-3">
-                <label asp-for="@Model.NewUser.DOB"></label>
-                <input asp-for="@Model.NewUser.DOB" type="date" />
-                <span asp-validation-for="@Model.NewUser.DOB"></span>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="form-group mb-3">
-                <label asp-for="@Model.NewUser.Password"></label>
-                <input asp-for="@Model.NewUser.Password" />
-                <span asp-validation-for="@Model.NewUser.Password"></span>
-            </div>
-        </div>
-
-          <div class="col">
-            <div class="form-group mb-3">
-                <label asp-for="@Model.NewUser.ConfirmPassword"></label>
-                <input asp-for="@Model.NewUser.ConfirmPassword" />
-                <span asp-validation-for="@Model.NewUser.ConfirmPassword"></span>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="form-group mb-3">              
-                <input asp-for="@Model.NewUser.PublicAddress" id="publicKeyInput" />
-            </div>
-        </div>
-
-        <button type="submit"></button>
-
-    </form>
+</body>
 
 
 
-    <a class="btn btn-dark" asp-page-handler="GivePermissionBlockChain"> GivePermission</a>
 
 
 
-</div>
+
+
+
+
 <script>
 
 
@@ -110,7 +107,18 @@ connect();
     var accountInterval = setInterval(async function () {
        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
        $('#publicKeyInput').val(accounts[0]);
+      //  alert('aws' + accounts[0])
     }, 3000);
 
 
   </script>
+
+
+
+
+<div style="display:none">
+    <button onclick="connect()" id="ConnectButton" hidden>Connect Wallet</button>
+
+@*    <a class="btn btn-dark" asp-page-handler="GivePermissionBlockChain">Call GivePermission directly for test</a>
+*@
+</div>

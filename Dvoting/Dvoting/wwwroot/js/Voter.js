@@ -12,7 +12,6 @@ async function getCandidates() {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, abi, signer); 
-        alert('awsa')
         try {
             const transactionResponse = await contract.getCandidates();
             console.log(transactionResponse); //returns array of array 
@@ -29,7 +28,7 @@ async function getCandidates() {
 
            
         } catch (error) { 
-            console.log('aws')
+           // console.log('aws')
             console.log(error.data)
   
         }
