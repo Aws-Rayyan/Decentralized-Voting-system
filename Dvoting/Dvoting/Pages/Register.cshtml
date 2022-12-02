@@ -6,6 +6,7 @@
 @*<script type="module" src="~/js/Voter.js"></script>
 *@
 
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -23,11 +24,18 @@
     <meta property="og:title" content="Register">
     <meta property="og:type" content="website">
 </head>
+
+<div asp-validation-summary="All" class="text-danger wrapper">
+</div>
+
+
+
 <body class="u-body u-xl-mode" data-lang="en">
     <section class="u-clearfix u-palette-1-dark-3 u-section-1" id="sec-eeac">
+
         <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
             <div class="u-align-center u-form u-form-1">
-                <form method="post" asp-page-handler="RegisterUser" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" style="padding: 10px;">
+                <form method="post"  style="padding: 10px;" id="reg_form">
                     <div class="u-form-group u-form-name">
                         <label asp-for="@Model.NewUser.NationalID" class="u-label u-label-1">National ID</label>
                         <input asp-for="@Model.NewUser.NationalID"  placeholder="Enter your National ID" id="name-14ad" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  maxlength="10">
@@ -40,10 +48,11 @@
                     <div class="u-form-group u-form-name u-form-group-3">
                         <label asp-for="@Model.NewUser.Lname"  class="u-label u-label-3">Last Name</label>
                         <input asp-for="@Model.NewUser.Lname" placeholder="Enter your Last Name " id="name-1df9" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                        <span asp-validation-for="@Model.NewUser.Lname"></span>
                     </div>
                     <div class="u-form-date u-form-group u-form-group-4">
                         <label asp-for="@Model.NewUser.DOB" class="u-label u-label-4">Date of Birth</label>
-                        <input asp-for="@Model.NewUser.DOB" type="date" placeholder="MM/DD/YYYY" id="date-08f9" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                        <input asp-for="@Model.NewUser.DOB" id="date-08f9" value="2000-11-02" type="date" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                     </div>
                     <div class="u-form-group u-form-group-5">
                         <label asp-for="@Model.NewUser.Password" class="u-label u-label-5">Password</label>
@@ -58,8 +67,8 @@
                         <input asp-for="@Model.NewUser.PublicAddress" id="publicKeyInput" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                     </div> 
                     <div class="u-align-center u-form-group u-form-submit">
-                        <a href="#" class="u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Register</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
+                        <a href="javascript:$('reg_form').submit()" class="u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Register</a>
+                        <input  type="submit" value="submit" class="u-form-control-hidden">
                     </div>
                   
                 </form>
@@ -80,7 +89,6 @@
 
 
 <script>
-
 
 async function connect() {
        

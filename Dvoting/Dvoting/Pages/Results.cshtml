@@ -1,0 +1,107 @@
+﻿@page
+@model Dvoting.Pages.ResultsModel
+@{
+}
+
+<script type="module" src="~/js/Voter.js"></script>
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Welcome to ISACA Student Group Presidential Elections">
+    <meta name="description" content="">
+    <title>Voting Results</title>
+    <link rel="stylesheet" href="~/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="~/css/Voting-Results.css" media="screen">
+    <script class="u-script" type="text/javascript" src="~/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="~/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+    <script type="application/ld+json">
+        {
+                "name": "",
+                "logo": "images/ISG_logo_Princess-Sumaya-University-for-Technology_rev_RGB.png"
+        }</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Voting Results">
+    <meta property="og:type" content="website">
+</head>
+<body class="u-body u-xl-mode" data-lang="en"> 
+    <section class="u-clearfix u-palette-1-dark-3 u-section-1" id="sec-6e57">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-expanded-width u-list u-list-1">
+                <div class="u-repeater u-repeater-1">
+                    <div class="u-border-9 u-border-white u-container-style u-list-item u-radius-26 u-repeater-item u-shape-round">
+                        <div class="u-container-layout u-similar-container u-container-layout-1">
+                            <p class="u-text u-text-default u-text-1">Aws Rayyan</p>
+                            <p class="u-align-center u-text u-text-default u-text-2">Number of Votes</p>
+                            <p class="u-align-center u-small-text u-text u-text-default u-text-variant u-text-3" id="Rayyan_votes">TBA</p>
+                        </div>
+                    </div>
+                    <div class="u-border-9 u-border-white u-container-style u-list-item u-radius-26 u-repeater-item u-shape-round">
+                        <div class="u-container-layout u-similar-container u-container-layout-2">
+                            <p class="u-text u-text-default u-text-4">Mahmoud Atari</p>
+                            <p class="u-align-center u-text u-text-default u-text-5"> &nbsp;Number of Votes</p>
+                            <p class="u-align-center u-small-text u-text u-text-default u-text-variant u-text-6" id="Atari_votes">TBA</p>
+                        </div>
+                    </div>
+                    <div class="u-border-9 u-border-white u-container-style u-list-item u-radius-26 u-repeater-item u-shape-round">
+                        <div class="u-container-layout u-similar-container u-container-layout-3">
+                            <p class="u-text u-text-default u-text-7">Aws Al-Masri</p>
+                            <p class="u-align-center u-text u-text-default u-text-8"> Number of Votes</p>
+                            <p class="u-align-center u-small-text u-text u-text-default u-text-variant u-text-9" id="Masri_votes">TBA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+async function connect() {
+        //console.log(ethers);
+  if (typeof window.ethereum !== "undefined") {
+    console.log("MetaMask deteced");
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    document.getElementById("ConnectButton").innerHTML = "Connected !!";
+
+    //fill the candidates list once connected
+    document.getElementById("getCandidatesButton").click()
+
+  } else {
+    document.getElementById("ConnectButton").innerHTML = "Please Install MetaMask";
+  }
+}
+connect();
+</script>
+
+
+
+<div class="text-center" style="display:none">
+    <button onclick="connect()" id="ConnectButton">Connect Wallet</button>
+       <button id="getCandidatesButton">getCandidates</button>      
+       <select id="CandidatesList">
+           <option value="-1" disabled selected>Choose The Candidates</option>
+       </select>
+
+       <button id="VoteButton">Vote</button>
+    <button id="TestButton">Test</button>
+</div>

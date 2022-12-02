@@ -25,8 +25,10 @@ async function getCandidates() {
                 select.appendChild(opt);
             }
 
+            $("#Rayyan_votes").text(transactionResponse[0][0]);          
+            $("#Atari_votes").text(transactionResponse[1][0]);
+            $("#Masri_votes").text(transactionResponse[2][0]);
 
-           
         } catch (error) { 
            // console.log('aws')
             console.log(error.data)

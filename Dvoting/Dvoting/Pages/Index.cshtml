@@ -4,6 +4,8 @@
     ViewData["Title"] = "Home page";
 }
 
+
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -29,6 +31,18 @@
 </head>
 <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en">
     <section class="u-clearfix u-palette-1-dark-3 u-section-1" id="sec-c955">
+
+        @{
+            if ( ((string)TempData["success"]??"0") == "1"){
+        <div id="GrantedSuccessfully" class="alert alert-success" role="alert" >
+                    Permission Granted Successfully
+        </div>
+        <script>
+            $('#GrantedSuccessfully').delay(6200).fadeOut(500);
+        </script>
+            }
+        }
+
         <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
             <h2 class="u-align-center u-text u-text-1">Welcome to ISACA Student Group Presidential Elections</h2>
         </div>

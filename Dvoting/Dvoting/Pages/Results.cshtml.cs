@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Dvoting.Pages
 {
-    public class VoterModel : PageModel
+    public class ResultsModel : PageModel
     {
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            return Page();
         }
     }
 }

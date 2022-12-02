@@ -21,9 +21,12 @@ namespace Dvoting.Pages
         {  
         }
 
-        public  IActionResult OnGet()
+        public  IActionResult OnGet(int s=0)
         {
-         
+            if (s == 1)
+            {
+                TempData["success"] = "1";
+            }
 
             return Page();
         }

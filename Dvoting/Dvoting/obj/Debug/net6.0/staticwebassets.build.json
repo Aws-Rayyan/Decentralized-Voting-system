@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ClyPl0V+teite6gH1qp39kGprWU7p9m5pfN6PLWN8DU=",
+  "Hash": "pI+rFx7Vq4EcPMbXv3mndjp517TMlKQE8V4R4VFwhqc=",
   "Source": "Dvoting",
   "BasePath": "_content/Dvoting",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Vote.css"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\GraduationProject\\Dvoting\\Dvoting\\wwwroot\\css\\Voting-Results.css",
+      "SourceId": "Dvoting",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\GraduationProject\\Dvoting\\Dvoting\\wwwroot\\",
+      "BasePath": "_content/Dvoting",
+      "RelativePath": "css/Voting-Results.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Voting-Results.css"
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\GraduationProject\\Dvoting\\Dvoting\\wwwroot\\favicon.ico",

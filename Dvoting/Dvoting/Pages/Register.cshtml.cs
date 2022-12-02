@@ -12,8 +12,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Numerics;
-using System.Reflection.Metadata;
-using static Org.BouncyCastle.Math.EC.ECCurve;
+
 
 namespace Dvoting.Pages
 {
@@ -28,10 +27,15 @@ namespace Dvoting.Pages
             _configuration = Configuration;
         }
 
+        public IActionResult OnGet()
+        {
+            return Page();
+        }
+
         public Register NewUser { get; set; } = new Register();
 
 
-        public async Task<IActionResult> OnPostRegisterUserAsync()
+        public async Task<IActionResult> OnPost()
         {
 
             if (!ModelState.IsValid)
@@ -61,17 +65,18 @@ namespace Dvoting.Pages
 
                         cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int, 20, ParameterDirection.Output, false, 0, 10, "Status", DataRowVersion.Default, null));
 
-                       // cmd.UpdatedRowSource = UpdateRowSource.OutputParameters;
+                        // cmd.UpdatedRowSource = UpdateRowSource.OutputParameters;
                         await cmd.ExecuteNonQueryAsync();
 
                         int Status = Convert.ToInt32(cmd.Parameters["@Status"].Value);
 
                         if (Status != 1)
                         {
-                            if(Status == 2) { 
-                            ModelState.AddModelError("", "User Is Already Registered");
+                            if (Status == 2)
+                            {
+                                ModelState.AddModelError("", "User Is Already Registered");
                             }
-                            else if(Status == 3)
+                            else
                             {
                                 ModelState.AddModelError("", "Wrong Information Entered");
                             }
@@ -79,15 +84,15 @@ namespace Dvoting.Pages
                             return Page();
 
                         }
-    
-                        HttpContext.Session.SetString("User_Name", NewUser.Fname+" "+NewUser.Lname);
+
+                        HttpContext.Session.SetString("User_Name", NewUser.Fname + " " + NewUser.Lname);
                         HttpContext.Session.SetString("NationalID", NewUser.NationalID);
 
 
-                        OnGetGivePermissionBlockChain();
+                        await OnGetGivePermissionBlockChain();
 
 
-                        return RedirectToPage("Voter");
+                        return RedirectToPage("./Index", new { s = 1 });
 
 
                     }
@@ -102,6 +107,7 @@ namespace Dvoting.Pages
             }
 
             return Page();
+
         }
 
 
@@ -139,8 +145,5 @@ namespace Dvoting.Pages
 
 
 
-        public void OnGet()
-        {
-        }
     }
 }
