@@ -130,10 +130,14 @@ namespace Dvoting.Pages
             web3.TransactionManager.UseLegacyAsDefault = true;
             try
             {
-                HexBigInteger gas = new HexBigInteger(new BigInteger(400000));
-                HexBigInteger value = new HexBigInteger(new BigInteger(0));      
+                HexBigInteger gas = new HexBigInteger(new BigInteger(54000));
+                HexBigInteger value = new HexBigInteger(new BigInteger(0));
 
-                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync(adminAccount.Address, gas, value, NewUser.PublicAddress); 
+                var GasPrice = await web3.Eth.GasPrice.SendRequestAsync();
+                //Console.WriteLine("gas price is : " + GasPrice);
+
+
+                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync(adminAccount.Address, gas, value,  NewUser.PublicAddress); 
                 permitToVote.Wait();
                 Console.WriteLine("permitted ");
             }catch(Exception e){
