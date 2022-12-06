@@ -35,10 +35,10 @@ contract Dvoting {
         //TODO:remove the following lines, its for testing
         s_candidates.push(candidate(0, "Aws Rayyan"));
         s_candidates.push(candidate(0, "Mahmood Atari"));
-        s_candidates.push(candidate(0, "Aws Al Masri"));       
+        s_candidates.push(candidate(0, "Aws Al Masri"));
+        s_candidates.push(candidate(0, "Mr White"));
     }
 
-    //Modifiers
     modifier onlyOwner() {
         require(
             msg.sender == s_owner,
@@ -63,9 +63,6 @@ contract Dvoting {
         _;
     }
 
-
-    //Owners functions
-
     function permitToVote(address _voter) public onlyOwner withinVotingPeriod {
         //require(s_voters[_voter].voterId == 0,"User Already Added");
         require(!s_voters[_voter].registered, "User Already Added");
@@ -74,19 +71,6 @@ contract Dvoting {
         //s_latestId ++;
     }
 
-    function removePermission(address _voter) public onlyOwner withinVotingPeriod {     
-        require(s_voters[_voter].registered, "User Has Not Been Added");
-        s_voters[_voter].registered = false;
-        //s_latestId ++;
-    }
-
-
-     function transferOwnership(address _newOwner)public onlyOwner {
-         s_owner = _newOwner;
-     }
-
-
-    //public functions
     function vote(uint256 _candidateId)
         public
         allowedToVote

@@ -26,13 +26,10 @@ namespace Dvoting.Models
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Required]
+        [DataType(DataType.Password)]      
         [Display(Name = " Confirm Password")]
-        [Compare("Password", ErrorMessage = "The Passwords Doesn't Match")]
         public string? ConfirmPassword { get; set; }
-
-        [Required]
+        
         public string? PublicAddress { get; set; }
 
 

@@ -1,4 +1,4 @@
-﻿export const contractAddress = "0x4f7159A04b7E92A46fEe541d61fc7579921AFab2"
+﻿export const contractAddress = "0xebceb60651802af725836DDE7a8A1EAEAF273377"
 
 export const abi = [
     {
@@ -21,6 +21,32 @@ export const abi = [
             }
         ],
         "name": "permitToVote",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_voter",
+                "type": "address"
+            }
+        ],
+        "name": "removePermission",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "transferOwnership",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"

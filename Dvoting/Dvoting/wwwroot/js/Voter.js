@@ -7,7 +7,8 @@ import * as jQuery from "../lib/jquery/dist/jquery.js";
 
 const getCandidatesButton = document.getElementById("getCandidatesButton");
 getCandidatesButton.onclick = getCandidates;
-async function getCandidates() {    
+async function getCandidates() { 
+   
     if (typeof window.ethereum !== "undefined") {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -28,6 +29,15 @@ async function getCandidates() {
             $("#Rayyan_votes").text(transactionResponse[0][0]);          
             $("#Atari_votes").text(transactionResponse[1][0]);
             $("#Masri_votes").text(transactionResponse[2][0]);
+
+
+            const transactionResponse2 = await contract.getVotingPeriod();
+            const epocheTime =parseInt(transactionResponse2._hex, 16);
+            var d = new Date(0);
+            d.setUTCSeconds(epocheTime);
+            console.log(d);
+            //TODO: Display on UI
+
 
         } catch (error) { 
            // console.log('aws')

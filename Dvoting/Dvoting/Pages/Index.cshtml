@@ -41,6 +41,19 @@
             $('#GrantedSuccessfully').delay(6200).fadeOut(500);
         </script>
             }
+            else if (((string)TempData["success"] ?? "0") == "2")
+            {
+                <div id="GrantedSuccessfully" class="alert alert-success" role="alert" >
+                            User Registered Successfully
+                </div>
+                <script>
+                    $('#GrantedSuccessfully').delay(6200).fadeOut(500);
+                </script>
+            }
+
+
+
+
         }
 
         <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">

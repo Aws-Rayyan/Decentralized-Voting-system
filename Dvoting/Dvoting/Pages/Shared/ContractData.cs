@@ -9,8 +9,8 @@ namespace Dvoting.Pages.Shared
     public class ContractData
     {
         public static string URL = "HTTP://localhost:8545";
-        public static string ContractAddress = "0x4f7159A04b7E92A46fEe541d61fc7579921AFab2";
-        public static string ABI = @" [
+        public static string ContractAddress = "0xebceb60651802af725836DDE7a8A1EAEAF273377";
+        public static string ABI = @"  [
     {
       ""inputs"": [
         {
@@ -38,6 +38,32 @@ namespace Dvoting.Pages.Shared
     {
       ""inputs"": [
         {
+          ""internalType"": ""address"",
+          ""name"": ""_voter"",
+          ""type"": ""address""
+        }
+      ],
+      ""name"": ""removePermission"",
+      ""outputs"": [],
+      ""stateMutability"": ""nonpayable"",
+      ""type"": ""function""
+    },
+    {
+      ""inputs"": [
+        {
+          ""internalType"": ""address"",
+          ""name"": ""_newOwner"",
+          ""type"": ""address""
+        }
+      ],
+      ""name"": ""transferOwnership"",
+      ""outputs"": [],
+      ""stateMutability"": ""nonpayable"",
+      ""type"": ""function""
+    },
+    {
+      ""inputs"": [
+        {
           ""internalType"": ""uint256"",
           ""name"": ""_candidateId"",
           ""type"": ""uint256""
@@ -54,7 +80,7 @@ namespace Dvoting.Pages.Shared
       ""outputs"": [
         {
           ""internalType"": ""uint256"",
-          ""name"": """",
+          ""name"": '',
           ""type"": ""uint256""
         }
       ],
@@ -80,7 +106,7 @@ namespace Dvoting.Pages.Shared
             }
           ],
           ""internalType"": ""struct Dvoting.candidate[] "",
-          ""name "": """",
+          ""name "": '',
           ""type "": ""tuple[] ""
         }
       ],
@@ -112,7 +138,7 @@ namespace Dvoting.Pages.Shared
             }
           ],
           ""internalType"": ""struct Dvoting.candidate "",
-          ""name "": """",
+          ""name "": '',
           ""type "": ""tuple ""
         }
       ],
@@ -144,7 +170,7 @@ namespace Dvoting.Pages.Shared
             }
           ],
           ""internalType"": ""struct Dvoting.voter "",
-          ""name "": """",
+          ""name "": '',
           ""type "": ""tuple ""
         }
       ],

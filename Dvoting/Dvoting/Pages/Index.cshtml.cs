@@ -26,6 +26,10 @@ namespace Dvoting.Pages
             if (s == 1)
             {
                 TempData["success"] = "1";
+            }else
+            if (s == 2)
+            {
+                TempData["success"] = "2";
             }
 
             return Page();

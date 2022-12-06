@@ -17,12 +17,12 @@ using System.Numerics;
 namespace Dvoting.Pages
 {
     [BindProperties]
-    public class RegsiterModel : PageModel
+    public class AdminRegsiterModel : PageModel
     {
 
         readonly IConfiguration _configuration;
 
-        public RegsiterModel(IConfiguration Configuration)
+        public AdminRegsiterModel(IConfiguration Configuration)
         {
             _configuration = Configuration;
         }
@@ -42,6 +42,11 @@ namespace Dvoting.Pages
             {
                 return Page();
             }
+            if(NewUser.Password != NewUser.ConfirmPassword)
+            {
+                ModelState.AddModelError("", "Passwords Doesn't Match");
+                return Page();
+            }
 
             try
             {
@@ -51,7 +56,7 @@ namespace Dvoting.Pages
                 using (SqlConnection connection = new SqlConnection(connectionstring))
                 {
                     await connection.OpenAsync();
-                    string sql = "SP_User_Validate";
+                    string sql = "SP_Register_User";
                     using (SqlCommand cmd = new SqlCommand(sql, connection))
                     {
 
@@ -61,11 +66,8 @@ namespace Dvoting.Pages
                         cmd.Parameters.Add(new SqlParameter("@NationalID", NewUser.NationalID));
                         cmd.Parameters.Add(new SqlParameter("@DOB", NewUser.DOB.Date));
                         cmd.Parameters.Add(new SqlParameter("@User_password", NewUser.Password));
-                        cmd.Parameters.Add(new SqlParameter("@PublicKey", NewUser.PublicAddress));
-
                         cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int, 20, ParameterDirection.Output, false, 0, 10, "Status", DataRowVersion.Default, null));
-
-                        // cmd.UpdatedRowSource = UpdateRowSource.OutputParameters;
+                 
                         await cmd.ExecuteNonQueryAsync();
 
                         int Status = Convert.ToInt32(cmd.Parameters["@Status"].Value);
@@ -80,19 +82,12 @@ namespace Dvoting.Pages
                             {
                                 ModelState.AddModelError("", "Wrong Information Entered");
                             }
-                            //TODO: Add other cases
+                            
                             return Page();
 
                         }
 
-                        HttpContext.Session.SetString("User_Name", NewUser.Fname + " " + NewUser.Lname);
-                        HttpContext.Session.SetString("NationalID", NewUser.NationalID);
-
-
-                        await OnGetGivePermissionBlockChain();
-
-
-                        return RedirectToPage("./Index", new { s = 1 });
+                        return RedirectToPage("./Index", new { s = 2 });
 
 
                     }
@@ -107,43 +102,6 @@ namespace Dvoting.Pages
             }
 
             return Page();
-
-        }
-
-
-         
-        public async Task OnGetGivePermissionBlockChain()
-        {
-            var adminPK = _configuration.GetValue<string>("AdminPK");
-
-            var adminAccount = new Account(adminPK);
-
-            //Console.WriteLine("private key is " + account.PrivateKey);
-            //Console.WriteLine("public key is " + account.PublicKey);            
-            //Console.WriteLine("address  is " + account.Address);
-
-            Web3 web3 = new Web3(url:ContractData.URL,account:adminAccount) ;
-            // Console.WriteLine(ContractData.ABI );
-           
-            Contract dVotingContract = web3.Eth.GetContract(ContractData.ABI.Replace("\n", "").Replace("\r", "").Replace(" ", ""), ContractData.ContractAddress);       
-            
-            web3.TransactionManager.UseLegacyAsDefault = true;
-            try
-            {
-                HexBigInteger gas = new HexBigInteger(new BigInteger(54000));
-                HexBigInteger value = new HexBigInteger(new BigInteger(0));
-
-                var GasPrice = await web3.Eth.GasPrice.SendRequestAsync();
-                //Console.WriteLine("gas price is : " + GasPrice);
-
-
-                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync(adminAccount.Address, gas, value,  NewUser.PublicAddress); 
-                permitToVote.Wait();
-                Console.WriteLine("permitted ");
-            }catch(Exception e){
-                Console.WriteLine("Error: {0}", e.Message);
-            }
-
 
         }
 

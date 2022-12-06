@@ -32,4 +32,11 @@
     <None Include="wwwroot\js\nicepage.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Pages\AdminRegister.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
