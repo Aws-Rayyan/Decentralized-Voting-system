@@ -30,7 +30,7 @@ async function getCandidates() {
             $("#Atari_votes").text(transactionResponse[1][0]);
             $("#Masri_votes").text(transactionResponse[2][0]);
 
-
+           //await trackVote();
             const transactionResponse2 = await contract.getVotingPeriod();
             const epocheTime =parseInt(transactionResponse2._hex, 16);
             var d = new Date(0);
@@ -89,6 +89,37 @@ async function Vote() {
 
 }
 
+
+async function trackVote() {
+    //alert('aws')
+    if (typeof window.ethereum !== "undefined") {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+        try {
+            const transactionResponse = await provider.getTransaction("0x248b062610766c480f7165fdfecf0cc9b770bc2e8faba44b4058e5801565fb87")
+            console.log(transactionResponse);
+            console.log(transactionResponse.data); //get the transaction data
+            const transactionData = transactionResponse.data;
+            console.log(transactionData.substring(10))
+            const candidateIDHex = transactionData.substring(10)
+            const candidateID = parseInt(candidateIDHex, 16)
+            console.log(candidateID)
+
+            const candidateName = await contract.getCandidate(candidateID);
+            console.log(candidateName.name);
+
+
+        } catch (error) {
+            console.log(error.data.message)       
+        }
+
+
+    } else {
+        //tell the user to add MetaMask
+    }
+
+}
 
 
 
