@@ -67,6 +67,9 @@ async function Vote() {
             $('#VotedSuccessfully').show()
             $('#VotedSuccessfully').delay(3200).fadeOut(500);
 
+            $('#VoteID').text(transactionResponse.hash)
+            $('#VoteID').show()
+
         } catch (error) {
             console.log(error.data.message)
             if (error.data.message.includes('You Are Not Allowed To Vote')) {
@@ -90,6 +93,8 @@ async function Vote() {
 }
 
 
+const TrackButton = document.getElementById("TrackButton");
+TrackButton.onclick = trackVote;
 async function trackVote() {
     //alert('aws')
     if (typeof window.ethereum !== "undefined") {
@@ -97,18 +102,44 @@ async function trackVote() {
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, abi, signer);
         try {
-            const transactionResponse = await provider.getTransaction("0x248b062610766c480f7165fdfecf0cc9b770bc2e8faba44b4058e5801565fb87")
-            console.log(transactionResponse);
-            console.log(transactionResponse.data); //get the transaction data
-            const transactionData = transactionResponse.data;
-            console.log(transactionData.substring(10))
-            const candidateIDHex = transactionData.substring(10)
-            const candidateID = parseInt(candidateIDHex, 16)
-            console.log(candidateID)
 
-            const candidateName = await contract.getCandidate(candidateID);
-            console.log(candidateName.name);
+            const voteid = $("#voteTrackingBox").val()
+            if (voteid == "" || voteid.length != 66) //TX id is 64 char (256bits = 32bytes) + 2 for the "0x"
+            {              
+                $('#trackingerrorbox').text("Please Enter A Valid ID")
+                $('#trackingerrorbox').show()
+                $('#trackingerrorbox').delay(5200).fadeOut(500);
 
+                return;
+            }
+            console.log(voteid)
+            try {      
+                const transactionResponse = await provider.getTransaction(voteid)
+                console.log(transactionResponse);
+                console.log(transactionResponse.data); //get the transaction data
+                const transactionData = transactionResponse.data;
+                if (transactionData.substring(0, 10) != "0x0121b93f") { //check if the data corresponds to the vote function signature
+                    $('#trackingerrorbox').text("Please Enter A Valid ID")
+                    $('#trackingerrorbox').show()
+                    $('#trackingerrorbox').delay(5200).fadeOut(500);
+                    return;
+                }
+                console.log(transactionData.substring(10))//remove 0x and the function signature 8 char
+                const candidateIDHex = transactionData.substring(10)
+                const candidateID = parseInt(candidateIDHex, 16) //convert candidate ID to decimal
+                console.log(candidateID)
+              
+                const candidateName = await contract.getCandidate(candidateID);//send if to the contract
+                console.log(candidateName.name);
+                $('#voteIDres').text("You Have Casted Your Vote To " + candidateName.name)
+                $('#voteIDres').show()
+                $('#voteIDres').delay(9200).fadeOut(500);
+             
+            } catch (e) {
+                $('#trackingerrorbox').text("You Didn't Vote Yet")
+                $('#trackingerrorbox').show()
+                $('#trackingerrorbox').delay(5200).fadeOut(500);
+            }
 
         } catch (error) {
             console.log(error.data.message)       

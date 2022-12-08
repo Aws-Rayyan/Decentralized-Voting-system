@@ -1,5 +1,5 @@
 ﻿@page
-@model Dvoting.Pages.VoterModel
+@model Dvoting.Pages.VoteTrackingModel
 @{
 }
 
@@ -36,34 +36,29 @@
     <section class="u-clearfix u-palette-1-dark-3 u-section-1" id="sec-090f">
 
 
-        <div id="errorNotAllowedToVote" class="alert alert-danger" role="alert" style="display:none;margin">
-            You Are Not Allowed To Vote, Please Get A Permission From The Admin
+        <div id="trackingerrorbox" class="alert alert-danger" role="alert" style="display:none;margin">
+             
         </div>
-        <div id="errorAlreadyVoted" class="alert alert-danger" role="alert" style="display:none">
-            You Have Already Casted Your Vote
-        </div>
-
-        <div id="VotedSuccessfully" class="alert alert-success" role="alert" style="display:none">
-            Your Vote Has Been Casted
-        </div>
-        <div id="VoteID" class="alert alert-success" role="alert" style="display:none">
+ 
+        <div id="voteIDres" class="alert alert-success" role="alert" style="display:none">
             
         </div>
+
+     
 
         <div class="u-clearfix u-sheet u-sheet-1">
             <div class="u-align-center u-form u-form-1">
                 <form  class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">             
                     <div class="u-form-group u-form-select u-form-group-3">
-                        <label for="CandidatesList" class="u-label u-label-3">Please Select your Candidate</label>
+                        <label for="voteTrackingBox" class="u-label u-label-3">Please Select your Candidate</label>
                         <div class="u-form-select-wrapper">
-                            <select id="CandidatesList" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                                <option value="-1" disabled selected>Choose The Candidates</option>
-                            </select>
+                            <input id="voteTrackingBox" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                           
                             <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
                         </div>
                     </div>
                     <div class="u-align-center u-form-group u-form-submit">
-                        <a id="VoteButton" class="u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Submit Vote</a>
+                        <a id="TrackButton" class="u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Track Vote</a>
                         <input type="submit" value="submit" class="u-form-control-hidden">
                     </div>
                 @*    <div class="u-form-send-message u-form-send-success"> Thank you! Your vote has been casted. </div>
