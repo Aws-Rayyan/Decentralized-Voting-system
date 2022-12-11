@@ -80,13 +80,13 @@ namespace Dvoting.Pages
                             {
                                 ModelState.AddModelError("", "Wrong Information Entered");
                             }
-                            //TODO: Add other cases
+                           
                             return Page();
 
                         }
 
-                        HttpContext.Session.SetString("User_Name", NewUser.Fname + " " + NewUser.Lname);
-                        HttpContext.Session.SetString("NationalID", NewUser.NationalID);
+                        //HttpContext.Session.SetString("User_Name", NewUser.Fname + " " + NewUser.Lname);
+                        //HttpContext.Session.SetString("NationalID", NewUser.NationalID);
 
 
                         await OnGetGivePermissionBlockChain();
@@ -133,11 +133,19 @@ namespace Dvoting.Pages
                 HexBigInteger gas = new HexBigInteger(new BigInteger(54000));
                 HexBigInteger value = new HexBigInteger(new BigInteger(0));
 
-                var GasPrice = await web3.Eth.GasPrice.SendRequestAsync();
-                //Console.WriteLine("gas price is : " + GasPrice);
+              //  var GasPrice = await web3.Eth.GasPrice.SendRequestAsync(); //base fee
+                                                                           //Console.WriteLine("gas price is : " + GasPrice);        
+              //  HexBigInteger maxPriorityFeePerGas = new HexBigInteger(new BigInteger(2000000000));
+              //  HexBigInteger maxFeePerGas= new HexBigInteger(GasPrice.Value + GasPrice.Value);
+              // Console.WriteLine(maxFeePerGas);
 
-
-                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync(adminAccount.Address, gas, value,  NewUser.PublicAddress); 
+                Task<string> permitToVote = dVotingContract.GetFunction("permitToVote").SendTransactionAsync(
+                  from:adminAccount.Address,
+                  gas: gas,
+                  value: value,
+                  // maxFeePerGas: maxFeePerGas,
+                  //  maxPriorityFeePerGas: maxPriorityFeePerGas,
+                  NewUser.PublicAddress); 
                 permitToVote.Wait();
                 Console.WriteLine("permitted ");
             }catch(Exception e){

@@ -79,17 +79,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <script>
 
 async function connect() {
@@ -107,17 +96,24 @@ async function connect() {
   }
 }
 connect();
+
+</script>
+
+<script>
+
+    var Interval = setInterval(async function () {
+        if ($("#CandidatesList option").length == 1) {          
+            connect();
+            }     
+    }, 2000);
+
+
 </script>
 
 
 
 <div class="text-center" style="display:none">
     <button onclick="connect()" id="ConnectButton">Connect Wallet</button>
-       <button id="getCandidatesButton">getCandidates</button>      
-       <select id="CandidatesList">
-           <option value="-1" disabled selected>Choose The Candidates</option>
-       </select>
-
-       <button id="VoteButton">Vote</button>
+       <button id="getCandidatesButton">getCandidates</button>       
     <button id="TestButton">Test</button>
 </div>

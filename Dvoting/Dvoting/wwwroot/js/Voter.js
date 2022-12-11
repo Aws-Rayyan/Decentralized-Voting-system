@@ -35,7 +35,8 @@ async function getCandidates() {
             const epocheTime =parseInt(transactionResponse2._hex, 16);
             var d = new Date(0);
             d.setUTCSeconds(epocheTime);
-            console.log(d);
+           // console.log(d);
+            $("#VotingPeriod").html("Voting Will End On  " + d);
             //TODO: Display on UI
 
 
