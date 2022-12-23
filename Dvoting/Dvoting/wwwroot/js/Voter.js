@@ -113,6 +113,8 @@ async function trackVote() {
 
                 return;
             }
+
+          
             console.log(voteid)
             try {      
                 const transactionResponse = await provider.getTransaction(voteid)
@@ -125,6 +127,19 @@ async function trackVote() {
                     $('#trackingerrorbox').delay(5200).fadeOut(500);
                     return;
                 }
+
+                const transactionReceipt = await provider.getTransactionReceipt(voteid)
+                console.log("Transaction receipt:")
+                console.log(transactionReceipt)
+                if (transactionReceipt == null) {
+                    $('#trackingerrorbox').text("The Transaction is not yet confirmed, Please Wait")
+                    $('#trackingerrorbox').show()
+                    $('#trackingerrorbox').delay(5200).fadeOut(500);
+                   return
+                }
+              
+
+
                 console.log(transactionData.substring(10))//remove 0x and the function signature 8 char
                 const candidateIDHex = transactionData.substring(10)
                 const candidateID = parseInt(candidateIDHex, 16) //convert candidate ID to decimal
@@ -132,7 +147,7 @@ async function trackVote() {
               
                 const candidateName = await contract.getCandidate(candidateID);//send if to the contract
                 console.log(candidateName.name);
-                $('#voteIDres').text("You Have Casted Your Vote To " + candidateName.name)
+                $('#voteIDres').text("A Vote Has Been Casted To " + candidateName.name)
                 $('#voteIDres').show()
                 $('#voteIDres').delay(9200).fadeOut(500);
              
