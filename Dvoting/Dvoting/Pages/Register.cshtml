@@ -6,7 +6,8 @@
 @*<script type="module" src="~/js/Voter.js"></script>
 *@
 
-<a asp-page-handler="GivePermissionBlockChain" >call give permission delete later</a>
+<a asp-page-handler="GivePermissionBlockChain" style="display:none" >call give permission delete later</a>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -25,13 +26,18 @@
     <meta property="og:type" content="website">
 </head>
 
-<div asp-validation-summary="All" class="text-danger wrapper">
-</div>
+
+
 
 
 
 <body class="u-body u-xl-mode" data-lang="en">
     <section class="u-clearfix u-palette-1-dark-3 u-section-1" id="sec-eeac">
+
+      
+        <div asp-validation-summary="All" style="justify-content:center" class="text-danger wrapper ulistalign"></div>
+       
+
 
         <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
             <div class="u-align-center u-form u-form-1">
@@ -126,3 +132,4 @@ connect();
 @*    <a class="btn btn-dark" asp-page-handler="GivePermissionBlockChain">Call GivePermission directly for test</a>
 *@
 </div>
+

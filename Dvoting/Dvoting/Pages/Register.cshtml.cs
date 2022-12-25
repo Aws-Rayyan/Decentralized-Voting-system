@@ -65,7 +65,6 @@ namespace Dvoting.Pages
 
                         cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int, 20, ParameterDirection.Output, false, 0, 10, "Status", DataRowVersion.Default, null));
 
-                        // cmd.UpdatedRowSource = UpdateRowSource.OutputParameters;
                         await cmd.ExecuteNonQueryAsync();
 
                         int Status = Convert.ToInt32(cmd.Parameters["@Status"].Value);
@@ -75,6 +74,14 @@ namespace Dvoting.Pages
                             if (Status == 2)
                             {
                                 ModelState.AddModelError("", "User Is Already Registered");
+                            }
+                            else if (Status == 4)
+                            {
+                                ModelState.AddModelError("", "You Are Not Allowed To Vote, Please Contact Us For More Details");
+                            }
+                            else if (Status == 5)
+                            {
+                                ModelState.AddModelError("", "A User Has Already Registered With The Same Ethereum Account");
                             }
                             else
                             {
@@ -89,8 +96,13 @@ namespace Dvoting.Pages
                         //HttpContext.Session.SetString("NationalID", NewUser.NationalID);
 
 
-                        await OnGetGivePermissionBlockChain();
-
+                       string res = await GivePermissionBlockChain();
+                       
+                        if(res == "fail")
+                        {
+                            ModelState.AddModelError("", "Voting Is Closed");
+                            return Page();
+                        }
 
                         return RedirectToPage("./Index", new { s = 1 });
 
@@ -112,7 +124,7 @@ namespace Dvoting.Pages
 
 
          
-        public async Task OnGetGivePermissionBlockChain()
+        public async Task<string> GivePermissionBlockChain()
         {
             var adminPK = _configuration.GetValue<string>("AdminPK");
 
@@ -148,8 +160,10 @@ namespace Dvoting.Pages
                   NewUser.PublicAddress); 
                 permitToVote.Wait();
                 Console.WriteLine("permitted ");
+                return "success";
             }catch(Exception e){
                 Console.WriteLine("Error: {0}", e.Message);
+                return "fail";
             }
 
 

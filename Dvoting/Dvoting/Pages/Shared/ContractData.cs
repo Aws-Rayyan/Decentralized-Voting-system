@@ -9,7 +9,7 @@ namespace Dvoting.Pages.Shared
     public class ContractData
     {
         public static string URL = "HTTP://localhost:8545";
-        public static string ContractAddress = "0xebceb60651802af725836DDE7a8A1EAEAF273377";
+        public static string ContractAddress = "0x63Eca02F94b11f1DC4026e09731fc7C39481E691";
         public static string ABI = @"  [
     {
       ""inputs"": [

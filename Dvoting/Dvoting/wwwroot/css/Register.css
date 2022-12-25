@@ -76,3 +76,11 @@
     width: 340px;
   }
 }
+
+.ulistalign {
+    text-align: center;
+}
+
+.ulistalign > ul {
+        display: inline-block;
+}
