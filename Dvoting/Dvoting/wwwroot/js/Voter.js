@@ -66,9 +66,9 @@ async function Vote() {
             console.log(transactionResponse); //returns array of array 
 
             $('#VotedSuccessfully').show()
-            $('#VotedSuccessfully').delay(3200).fadeOut(500);
+           // $('#VotedSuccessfully').delay(3200).fadeOut(500);
 
-            $('#VoteID').text(transactionResponse.hash)
+            $('#VoteID').text("User The Following ID To track Your Vote" + transactionResponse.hash)
             $('#VoteID').show()
 
         } catch (error) {
@@ -79,6 +79,9 @@ async function Vote() {
             } else if (error.data.message.includes('You Already Voted')) {
                 $('#errorAlreadyVoted').show()
                 $('#errorAlreadyVoted').delay(5200).fadeOut(500);
+            } else if (error.data.message.includes('Voting Period Has Been Exceeded')) {
+                $('#errorVotingClosed').show()
+                $('#errorVotingClosed').delay(5200).fadeOut(500);
             }
 
 

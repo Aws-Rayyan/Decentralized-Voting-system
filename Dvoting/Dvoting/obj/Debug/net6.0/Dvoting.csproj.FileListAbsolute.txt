@@ -188,3 +188,8 @@ C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\refin
 C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\Dvoting.pdb
 C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\Dvoting.genruntimeconfig.cache
 C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\ref\Dvoting.dll
+C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\staticwebassets\msbuild.Dvoting.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\staticwebassets\msbuild.build.Dvoting.props
+C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Dvoting.props
+C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Dvoting.props
+C:\Users\LENOVO\Desktop\GraduationProject\Dvoting\Dvoting\obj\Debug\net6.0\staticwebassets.pack.json
