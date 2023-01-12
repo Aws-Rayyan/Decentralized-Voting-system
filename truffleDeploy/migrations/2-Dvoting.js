@@ -2,5 +2,5 @@
 
  module.exports = function(deployer) {
    // deployment steps
-   deployer.deploy(vote,30);
+   deployer.deploy(vote,30,["Aws Rayyan","Mahmoud Atari","Aws Al-Masri"]);
  };

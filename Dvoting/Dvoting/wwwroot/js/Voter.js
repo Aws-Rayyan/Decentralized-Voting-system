@@ -30,18 +30,18 @@ async function getCandidates() {
             $("#Atari_votes").text(transactionResponse[1][0]);
             $("#Masri_votes").text(transactionResponse[2][0]);
 
-           //await trackVote();
+           
             const transactionResponse2 = await contract.getVotingPeriod();
             const epocheTime =parseInt(transactionResponse2._hex, 16);
             var d = new Date(0);
             d.setUTCSeconds(epocheTime);
-           // console.log(d);
+          
             $("#VotingPeriod").html("Voting Will End On  " + d);
-            //TODO: Display on UI
+            
 
 
         } catch (error) { 
-           // console.log('aws')
+           
             console.log(error.data)
   
         }
@@ -56,7 +56,7 @@ async function getCandidates() {
 const VoteButton = document.getElementById("VoteButton");
 VoteButton.onclick = Vote;
 async function Vote() {
-    //alert('aws')
+    
     if (typeof window.ethereum !== "undefined") {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -66,9 +66,9 @@ async function Vote() {
             console.log(transactionResponse); //returns array of array 
 
             $('#VotedSuccessfully').show()
-           // $('#VotedSuccessfully').delay(3200).fadeOut(500);
+           
 
-            $('#VoteID').text("User The Following ID To track Your Vote" + transactionResponse.hash)
+            $('#VoteID').text("Use The Following ID To track Your Vote  " + transactionResponse.hash)
             $('#VoteID').show()
 
         } catch (error) {
@@ -91,7 +91,7 @@ async function Vote() {
 
 
     } else {
-        //tell the user to add MetaMask
+        alert("Please connect to MetaMask")
     }
 
 }
@@ -107,7 +107,7 @@ async function trackVote() {
         const contract = new ethers.Contract(contractAddress, abi, signer);
         try {
 
-            const voteid = $("#voteTrackingBox").val()
+            const voteid = $("#voteTrackingBox").val().trim();
             if (voteid == "" || voteid.length != 66) //TX id is 64 char (256bits = 32bytes) + 2 for the "0x"
             {              
                 $('#trackingerrorbox').text("Please Enter A Valid ID")
@@ -138,7 +138,12 @@ async function trackVote() {
                     $('#trackingerrorbox').text("The Transaction is not yet confirmed, Please Wait")
                     $('#trackingerrorbox').show()
                     $('#trackingerrorbox').delay(5200).fadeOut(500);
-                   return
+                    return;
+                } else if (transactionReceipt.to != contractAddress) {
+                    $('#trackingerrorbox').text("Invalid ID")
+                    $('#trackingerrorbox').show()
+                    $('#trackingerrorbox').delay(5200).fadeOut(500);
+                    return;
                 }
               
 
