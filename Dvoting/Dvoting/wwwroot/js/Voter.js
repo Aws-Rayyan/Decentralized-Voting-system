@@ -140,7 +140,7 @@ async function trackVote() {
                     $('#trackingerrorbox').delay(5200).fadeOut(500);
                     return;
                 } else if (transactionReceipt.to != contractAddress) {
-                    $('#trackingerrorbox').text("Invalid ID")
+                    $('#trackingerrorbox').text("Please Enter A Valid ID")
                     $('#trackingerrorbox').show()
                     $('#trackingerrorbox').delay(5200).fadeOut(500);
                     return;
@@ -160,7 +160,7 @@ async function trackVote() {
                 $('#voteIDres').delay(9200).fadeOut(500);
              
             } catch (e) {
-                $('#trackingerrorbox').text("You Didn't Vote Yet")
+                $('#trackingerrorbox').text("Please Enter A Valid ID")
                 $('#trackingerrorbox').show()
                 $('#trackingerrorbox').delay(5200).fadeOut(500);
             }
