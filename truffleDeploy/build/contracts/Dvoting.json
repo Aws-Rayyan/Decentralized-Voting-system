@@ -16316,12 +16316,12 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0xfcE07DeA852f70A481d9d4739Aa1fac6C8c13C76",
-      "transactionHash": "0x62386974751a08e199d72c4a7f905d6fee37d56fceaf39df427cae9dfe837854"
+      "address": "0x39B4343AD0573181eF9630829C33a6A0ad8Ee08F",
+      "transactionHash": "0x4f7b30f168b006d88a51dfbe9b380828591ca229eeec7b989b7795d6e7c1536f"
     }
   },
   "schemaVersion": "3.4.6",
-  "updatedAt": "2023-01-14T16:34:41.437Z",
+  "updatedAt": "2023-01-19T20:18:19.423Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

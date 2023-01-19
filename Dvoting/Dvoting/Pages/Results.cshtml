@@ -87,7 +87,15 @@ async function connect() {
     document.getElementById("ConnectButton").innerHTML = "Please Install MetaMask";
   }
 }
+
+
 connect();
+
+
+    var Interval = setInterval(async function () {
+        getCandidates();
+    }, 4000);
+
 </script>
 
 
@@ -102,3 +110,5 @@ connect();
        <button id="VoteButton">Vote</button>
     <button id="TestButton">Test</button>
 </div>
+
+
