@@ -108,7 +108,7 @@ async function trackVote() {
         try {
 
             const voteid = $("#voteTrackingBox").val().trim();
-            if (voteid == "" || voteid.length != 66) //TX id is 64 char (256bits = 32bytes) + 2 for the "0x"
+            if (/*voteid == "" ||*/ voteid.length != 66) //TX id is 64 char (256bits = 32bytes) + 2 for the "0x"
             {              
                 $('#trackingerrorbox').text("Please Enter A Valid ID")
                 $('#trackingerrorbox').show()

@@ -1,5 +1,6 @@
 # GraduationProject
-Yo Yo Dvoting system !!!
+
+some edits
 
 Requirements
 1- Visual Studio 2022
@@ -10,3 +11,6 @@ Requirements
 6- Truffle v5.5.6 (core: 5.5.6)
 7- Solidity compiler -0.8.10 (solc-js)
 
+
+Make Sure To change the Database Connection String and The Admin private key based 
+on your environment before running the project
